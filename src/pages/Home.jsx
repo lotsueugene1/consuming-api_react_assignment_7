@@ -1,22 +1,33 @@
 import MovieGrid from '../components/MovieGrid';
 import { useState, useEffect } from 'react';
 import { getPopularMovies } from '../services/movieService';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 
 function Home({searchResults}) {
   const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async() => {
+      setLoading(true);
       const movieData = await getPopularMovies();
-      setMovies(movieData)
+      setMovies(movieData);
+      setLoading(false);
     };
 
     fetchMovies();
   }, []); 
 
     const displayRecipes = searchResults || movies;
-
+    
+    if (loading) {
+    return (
+      <main className="main-content">
+        <LoadingSpinner />
+      </main>
+    );
+  }
   return (
     <main className="main-content">
       <div className="content-header">
