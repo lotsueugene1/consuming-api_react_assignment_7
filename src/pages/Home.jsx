@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getPopularMovies } from '../services/movieService';
 
 
-function Home() {
+function Home({searchResults}) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -15,13 +15,15 @@ function Home() {
     fetchMovies();
   }, []); 
 
+    const displayRecipes = searchResults || movies;
+
   return (
     <main className="main-content">
       <div className="content-header">
         <h2>Popular Movies</h2>
         <p>Discover and save your favorite films</p>
       </div>
-      <MovieGrid movies={movies} />
+      <MovieGrid movies={displayRecipes} />
     </main>
   );
 };
