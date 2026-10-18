@@ -5,7 +5,7 @@ function Favorites() {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favoriteMovies')) || []; //reads favoriteMovies set in MovieCard
+    const favorites = JSON.parse(localStorage.getItem('favoriteMovies')) || []; 
     setFavoriteMovies(favorites);
   }, []);
 
