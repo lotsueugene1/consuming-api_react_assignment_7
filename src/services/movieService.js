@@ -5,5 +5,5 @@ export async function getPopularMovies() {
         `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
     );
     const data = await response.json();
-    return data.movies;
-}A
+    return data.results;
+}
